@@ -1,8 +1,8 @@
 import React from 'react';
 import ReactDOM from "react-dom";
-import FormContainer from "./js/components/container/FormContainer.jsx";
+import Eurojackpot from "./js/components/eurojackpot/Eurojackpot";
 
 
 
 const wrapper = document.getElementById("create-article-form");
-wrapper ? ReactDOM.render(<FormContainer />, wrapper) : false; 
+wrapper ? ReactDOM.render(<Eurojackpot />, wrapper) : false; 
