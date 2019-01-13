@@ -4,7 +4,8 @@ import { withStyles } from '@material-ui/core/styles'
 import Grid from '@material-ui/core/Grid'
 import TitleContainer from '../container/TitleContainer'
 import Numbers from '../container/Numbers'
-import { AxiosProvider, Request, Get, Delete, Head, Post, Put, Patch, withAxios } from 'react-axios'
+import Results from '../container/Results'
+
 import axios from 'axios'
 
 
@@ -13,23 +14,6 @@ const styles = theme => ({
     flexGrow: 1,
   }, 
 });
-let self = this;
-axios.get('https://www.lottoland.com/api/drawings/euroJackpot')
-    .then(function (response) {
-      // handle success
-      self.setState({model: response.data})
-      console.log(this.state);
-      
-    })
-    .catch(function (error) {
-      // handle error
-      console.log(error);
-       
-    })
-    .then(function () {
-      // always executed
-      
-    });
 
  class Eurojackpot extends Component {
 
@@ -38,22 +22,37 @@ axios.get('https://www.lottoland.com/api/drawings/euroJackpot')
     this.state = {}; 
     
   }
- 
+
+  componentDidMount(){
+    axios.get('https://www.lottoland.com/api/drawings/euroJackpot')
+    .then(response => {
+      this.setState({ titleContainer: <TitleContainer model={response.data}/> });
+      this.setState({ numbers: <Numbers numbers={response.data}/> });
+      this.setState({ results: <Results model={response.data}/> })
+      
+    })
+    .catch(function (error) {
+      console.log(error);
+    })
+  }
+  
+
   render() {
     const { classes } = this.props;
      
     return (
-      <Get url="https://www.lottoland.com/api/drawings/euroJackpot">
-         <Grid className={classes.root}   
-            container
-            direction="column"
-            justify="space-around"
-            alignItems="stretch"> 
+      
+      <Grid className={classes.root}   
+        container
+        direction="column"
+        justify="space-around"
+        alignItems="stretch"> 
+          {this.state.titleContainer}
+          {this.state.numbers}
+          {this.state.results}
           
-              <TitleContainer   /> 
-              <Numbers/>
-          </Grid>
-      </Get>
+      </Grid>
+  
      
     )
       

@@ -6,7 +6,11 @@ const styles = theme => ({
   TitleContainer: {
         display:'flex',
         flexDirection: 'row',
-        justifyContent: 'flex-start'
+        justifyContent: 'flex-start',
+        fontFamily: 'Poppins',
+        fontWeight: 'bold',
+        fontSize:'1.8rem'
+        
     } 
 })
 
@@ -26,7 +30,7 @@ class TitleContainer extends Component {
   } 
   render() { 
 
-    const { classes } = this.props;
+    const { classes, model } = this.props;
     return (
         <section className={classNames(classes.TitleContainer)}>
              EUROJACKPOT RESULTS & WINNING NUMBERS  
