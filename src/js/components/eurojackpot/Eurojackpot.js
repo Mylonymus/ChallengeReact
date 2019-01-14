@@ -5,6 +5,8 @@ import Grid from '@material-ui/core/Grid'
 import TitleContainer from '../container/TitleContainer'
 import Numbers from '../container/Numbers'
 import Results from '../container/Results'
+import Pod1 from '../container/Pod1'
+import Pod2 from '../container/Pod2'
 
 import axios from 'axios'
 
@@ -12,7 +14,23 @@ import axios from 'axios'
 const styles = theme => ({
   root: {
     flexGrow: 1,
+    display: 'flex',
+    width:'100%'
   }, 
+  leftCol:{
+    width:'60%',
+    justifyContent: 'flex-start',
+    flexGrow:2
+  },
+  rightCol:{
+    width:'30%',
+    justifyContent: 'flex-end',
+    flexGrow:1
+  },
+  title: {
+    width:'100%',
+    display:'block'
+  }
 });
 
  class Eurojackpot extends Component {
@@ -29,7 +47,8 @@ const styles = theme => ({
       this.setState({ titleContainer: <TitleContainer model={response.data}/> });
       this.setState({ numbers: <Numbers numbers={response.data}/> });
       this.setState({ results: <Results model={response.data}/> })
-      
+      this.setState({ pod1: <Pod1 model={response.data}/> })
+      this.setState({ pod2: <Pod2 model={response.data}/> })
     })
     .catch(function (error) {
       console.log(error);
@@ -41,19 +60,21 @@ const styles = theme => ({
     const { classes } = this.props;
      
     return (
-      
-      <Grid className={classes.root}   
-        container
-        direction="column"
-        justify="space-around"
-        alignItems="stretch"> 
+      <Fragment>
+        <div className={classes.title}>
           {this.state.titleContainer}
           {this.state.numbers}
-          {this.state.results}
-          
-      </Grid>
-  
-     
+        </div>
+        <div className={classes.root}> 
+            <div className={classes.leftCol}> 
+              {this.state.results}
+            </div>
+            <div className={classes.rightCol}>
+              {this.state.pod1}
+              {this.state.pod2}
+            </div> 
+        </div>
+      </Fragment>
     )
       
   }

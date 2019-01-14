@@ -53,11 +53,13 @@ let styles = {
       },
     TH: {
         fontSize:20,
-        fontWeight:700
+        fontWeight:500,
+        fontFamily:'Poppins',
     },
     TD:{
+        fontFamily:'Poppins',
         fontSize:18,
-        fontWeight: 500
+        fontWeight: 200
     }
 
 }

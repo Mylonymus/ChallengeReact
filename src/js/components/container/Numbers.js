@@ -4,7 +4,8 @@ import classNames from 'classnames';
 const styles = theme => ({
     root: {
       flexGrow: 1,
-      
+      width:'100%',
+      display:'block'
     }, 
     resetMarginPadding:{
         margin:0,
