@@ -1,7 +1,6 @@
 import React, { Fragment, Component } from 'react'
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles' 
-import Grid from '@material-ui/core/Grid'
 import TitleContainer from '../container/TitleContainer'
 import Numbers from '../container/Numbers'
 import Results from '../container/Results'
