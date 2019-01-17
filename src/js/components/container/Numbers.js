@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { withStyles } from '@material-ui/core/styles'; 
-import classNames from 'classnames';
-const styles = theme => ({
+
+const styles = {
     root: {
       flexGrow: 1,
       width:'100%',
@@ -45,7 +45,7 @@ const styles = theme => ({
         fontFamily: 'Poppins',
         fontSize: 18
     }
-  });
+  };
 
 export class Numbers extends Component {
 

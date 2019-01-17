@@ -50,7 +50,7 @@ class Row extends Component {
     }
   
     render() {
-      const { tdClass, index, winners, prize, amount, currency } = this.props;
+      const { tdClass, index, winners, prize, currency } = this.props;
     
       
             return(<TableRow key={index.toString()}>   

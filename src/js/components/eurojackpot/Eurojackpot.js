@@ -1,5 +1,5 @@
 import React, { Fragment, Component } from 'react'
-import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles' 
 import TitleContainer from '../container/TitleContainer'
 import Numbers from '../container/Numbers'
@@ -7,10 +7,10 @@ import Results from '../container/Results'
 import Pod1 from '../container/Pod1'
 import Pod2 from '../container/Pod2'
 
-import axios from 'axios'
+import {Get} from 'react-axios'
 
 
-const styles = theme => ({
+const styles = {
   root: {
     flexGrow: 1,
     display: 'flex',
@@ -30,7 +30,7 @@ const styles = theme => ({
     width:'100%',
     display:'block'
   }
-});
+};
 
  class Eurojackpot extends Component {
 
@@ -41,38 +41,46 @@ const styles = theme => ({
   }
 
   componentDidMount(){
-    axios.get('https://www.lottoland.com/api/drawings/euroJackpot')
-    .then(response => {
-      this.setState({ titleContainer: <TitleContainer model={response.data}/> });
-      this.setState({ numbers: <Numbers numbers={response.data}/> });
-      this.setState({ results: <Results model={response.data}/> })
-      this.setState({ pod1: <Pod1 model={response.data}/> })
-      this.setState({ pod2: <Pod2 model={response.data}/> })
-    })
-    .catch(function (error) {
-      console.log(error);
-    })
+    
   }
   
 
   render() {
-    const { classes } = this.props;
-     
+    const { classes } = this.props; 
     return (
       <Fragment>
-        <div className={classes.title}>
-          {this.state.titleContainer}
-          {this.state.numbers}
-        </div>
-        <div className={classes.root}> 
-            <div className={classes.leftCol}> 
-              {this.state.results}
-            </div>
-            <div className={classes.rightCol}>
-              {this.state.pod1}
-              {this.state.pod2}
-            </div> 
-        </div>
+        <Get url="https://www.lottoland.com/api/drawings/euroJackpot">
+        {(error, response, isLoading, makeRequest, axios) => {
+          if(error) {
+            return (<div>Something bad happened: {error.message} <button onClick={() => makeRequest({ params: { reload: true } })}>Retry</button></div>)
+          }
+          else if(isLoading) {
+            return (<div>Loading...</div>)
+          }
+          else if(response !== null) {
+            return (
+              <Fragment>
+                  <div className={classes.title}>
+                    <TitleContainer model={response.data}/>
+                    <Numbers numbers={response.data}/>
+                  </div>
+                  <div className={classes.root}> 
+                      <div className={classes.leftCol}> 
+                        <Results model={response.data}/> })
+                      </div>
+                      <div className={classes.rightCol}>
+                        <Pod1 model={response.data}/>
+                        <Pod2 model={response.data}/>
+                      </div> 
+                  </div>
+              </Fragment>
+            )
+          }
+          return (<div>Default message before request is made.</div>)
+        }}
+          
+        </Get>
+        
       </Fragment>
     )
       

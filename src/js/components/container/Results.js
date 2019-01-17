@@ -5,7 +5,6 @@ import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow'; 
-import classNames from 'classnames';
 import Row from './Row'
 
 
@@ -42,12 +41,8 @@ export class Results extends Component {
    componentDidMount(){
        const { model } = this.props;
        let rowsResults = [];
-        Object.keys(model.last.odds).map(function(x, i){
-                    
-             
+        Object.keys(model.last.odds).map(function(el, i){
                 rowsResults.push(model.last.odds['rank'+i])
-             
-            
         })
         this.setState({rowsResults: rowsResults})
    }
@@ -84,11 +79,9 @@ export class Results extends Component {
                         }
                         else{
                             return(<TableRow key={index.toString()}></TableRow>)
-                        }
-                        
+                        } 
                     })
                 }
-                
             </TableBody>
         </Table>
               

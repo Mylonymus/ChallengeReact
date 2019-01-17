@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import classNames from 'classnames';
+
 import { withStyles } from '@material-ui/core/styles' 
 
-let style = {
+const style = {
   root: {
     padding:21,
     marginLeft:28,

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 
-const styles = theme => ({ 
+const styles = { 
   TitleContainer: {
         display:'flex',
         flexDirection: 'row',
@@ -12,7 +12,7 @@ const styles = theme => ({
         fontSize:'1.8rem'
         
     } 
-})
+}
 
 class TitleContainer extends Component {
     
@@ -30,7 +30,7 @@ class TitleContainer extends Component {
   } 
   render() { 
 
-    const { classes, model } = this.props;
+    const { classes } = this.props;
     return (
         <section className={classNames(classes.TitleContainer)}>
              EUROJACKPOT RESULTS & WINNING NUMBERS  
